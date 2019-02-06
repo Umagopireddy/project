@@ -14,34 +14,37 @@
 <body>
 <jsp:include page="navbar.jsp" />  
 
- <div class="container">
-            <h3>Payment</h3>
-            
-            <div class="row">
-            <div class="container">
-                <label for="cname">Account holder name</label>
-                <input type="text" id="cname" name="cardname" placeholder="">
-             </div>   
-            
-            <div class="container">
-                <label for="ccnum">Credit card number</label>
-                <input type="text" id="ccnum" name="cardnumber" placeholder="">
-            </div>
-            
-           <div class="container">
-                 <label for="expmonth">Expiry Month</label>
-                 <input type="text" id="expmonth" name="expmonth" placeholder="">
-             </div>
-              <div class="container">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="">
-              </div>
-            </div>
-            
-             <a href="<c:url value='/cart/createorder'></c:url>">
-             <button type="button" class="btn btn-success">Continue to checkout</button>
-             </a>
-          </div>
-
+ <form action="<c:url value="/cart/createorder" />" method="post">
+<table align="center" width="40%" class="table table-bordered">
+	<tr bgcolor="cyan"><td colspan="2">Payment Process </td></tr>
+<tr>
+		<td>Payment Mode </td>
+		<td>
+  		 <input type="radio" name="pmode" value="CC">Credit Card
+		<input type="radio" name="pmode" value="CD">Cash On Delivery
+		</td>
+	</tr>
+	
+	
+	<tr bgcolor="cyan">
+		<td>Credit Card</td>
+		<td><input type="text"pattern="^(?:1[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$" name="ccard"/></td>
+	</tr>
+	
+	<tr>
+		<td>Validity <input type="text"pattern="^((0[1-9])|(1[0-2]))\/((2009)|(20[1-2][0-9]))$" name="validity"/></td>
+		<td>CVV <input type="text" pattern="[3-9]\d\d" name="cvv"/></td>
+	</tr>
+	
+	<tr bgcolor="cyan">
+		<td> Name on Card</td>
+		<td> <input type="text" pattern="[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$" name="cname"/></td>
+	</tr>
+	<tr>
+		<td colspan="2"><center><input type="submit" value="Payment Process"/></center></td>
+	</tr>
+	
+</table>
+</form>
 </body>
 </html>
